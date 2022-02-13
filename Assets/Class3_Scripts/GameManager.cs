@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
     private static GameManager staticInstance;
 
     //We need variables to store the player's current state
-    private bool isFast;
-    private bool isSlow;
+    public bool isFast;
+    public bool isSlow;
+
+    public float fastMoveSpeed = 25;
+    public float fastSprintSpeed = 32;
 
     //We also need the third person controller
     public ThirdPersonController myController;
@@ -44,6 +47,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("" + myController.MoveSpeed);
+        Debug.Log(isFast);
+
+        if(isFast)
+        {
+            StartCoroutine("TempSpeedUp");
+            isFast = false;
+        }
     }
+
+    IEnumerator TempSpeedUp()
+    {
+        myController.MoveSpeed = fastMoveSpeed;
+        myController.SprintSpeed = fastSprintSpeed;
+        yield return new WaitForSeconds(2f);
+        myController.MoveSpeed = 5;
+        myController.SprintSpeed = 8.3f;
+
+    }
+
 }
