@@ -31,7 +31,20 @@ public class TriggerDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag);
-        mainManager.isFast = true;
-        mainManager.isSlow = false;
+        if(other.tag == "SpeedUp")
+        {
+            mainManager.isFast = true;
+            mainManager.isSlow = false;
+        }
+        else if(other.tag == "SlowDown")
+        {
+            mainManager.isFast = false;
+            mainManager.isSlow = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        mainManager.StopChange();
     }
 }

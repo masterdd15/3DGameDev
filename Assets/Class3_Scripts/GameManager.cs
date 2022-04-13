@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     public bool isFast;
     public bool isSlow;
 
-    public float fastMoveSpeed = 25;
-    public float fastSprintSpeed = 32;
+    private float fastMoveSpeed = 32;
+    private float fastSprintSpeed = 44;
+
+    private float slowMoveSpeed = 3;
+    private float slowSprintSpeed = 4;
 
     //We also need the third person controller
     public ThirdPersonController myController;
@@ -47,13 +50,34 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isFast);
+        //Debug.Log("" + myController.MoveSpeed);
 
         if(isFast)
         {
-            StartCoroutine("TempSpeedUp");
-            isFast = false;
+            myController.MoveSpeed = fastMoveSpeed;
+            myController.SprintSpeed = fastSprintSpeed;
         }
+        else if(isSlow)
+        {
+            Debug.Log("CHANGING SPEED");
+            myController.MoveSpeed = slowMoveSpeed;
+            myController.SprintSpeed = slowSprintSpeed;
+        }
+    }
+
+    public void StopChange()
+    {
+        if(isFast)
+        {
+            StartCoroutine("TempSpeedUp");
+        }
+        else if(isSlow)
+        {
+            StartCoroutine("TempSlowDown");
+        }
+
+        isFast = false;
+        isSlow = false;
     }
 
     IEnumerator TempSpeedUp()
@@ -61,8 +85,19 @@ public class GameManager : MonoBehaviour
         myController.MoveSpeed = fastMoveSpeed;
         myController.SprintSpeed = fastSprintSpeed;
         yield return new WaitForSeconds(2f);
-        myController.MoveSpeed = 5;
-        myController.SprintSpeed = 8.3f;
+        myController.MoveSpeed = 8;
+        myController.SprintSpeed = 12;
+
+    }
+
+    IEnumerator TempSlowDown()
+    {
+        
+myController.MoveSpeed = slowMoveSpeed;
+        myController.SprintSpeed = slowSprintSpeed;
+        yield return new WaitForSeconds(2f);
+        myController.MoveSpeed = 8;
+        myController.SprintSpeed = 12;
 
     }
 
