@@ -159,7 +159,7 @@ public class @NewActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3a6342d-6d34-4b9f-bd4e-a7abb747d7d0"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -172,7 +172,7 @@ public class @NewActions : IInputActionCollection, IDisposable
                     ""id"": ""89a05922-504b-44e8-aba5-470fc0c5f9b6"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=0.05,y=0.05)"",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=1.5,y=1.5)"",
                     ""groups"": """",
                     ""action"": ""Look1"",
                     ""isComposite"": false,

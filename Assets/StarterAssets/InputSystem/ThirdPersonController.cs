@@ -215,7 +215,7 @@ namespace StarterAssets
 		private void CameraRotation()
 		{
 			// if there is an input and camera position is not fixed
-			if (currentLookValue.sqrMagnitude >= _threshold && !LockCameraPosition)
+			if (currentLookValue.sqrMagnitude >= _threshold && currentShiftCameraValue)
 			{
 				//Don't multiply mouse input by Time.deltaTime;
 				float deltaTimeMultiplier = playerInput.currentControlScheme == "KeyboardMouse" ? 1.0f : Time.deltaTime;
